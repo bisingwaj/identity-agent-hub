@@ -1,26 +1,14 @@
 /**
- * Étape 1 - Données déclarées par le citoyen
+ * Step 1 - Clean minimal data view
  */
 
 import { useState } from 'react';
 import { Demande } from '@/types';
 import { useDemandes } from '@/contexts/DemandesContext';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
-import { Badge } from '@/components/ui/badge';
-import { 
-  User, 
-  Calendar, 
-  MapPin, 
-  Phone, 
-  Mail, 
-  Edit2, 
-  Save, 
-  X,
-  History 
-} from 'lucide-react';
+import { Edit2, Save, X, Clock } from 'lucide-react';
 
 interface Step1DonneesProps {
   demande: Demande;
@@ -43,151 +31,103 @@ const Step1Donnees = ({ demande, onComplete }: Step1DonneesProps) => {
   };
 
   const fields = [
-    { key: 'nom', label: 'Nom', icon: User },
-    { key: 'prenom', label: 'Prénom', icon: User },
-    { key: 'dateNaissance', label: 'Date de naissance', icon: Calendar, type: 'date' },
-    { key: 'lieuNaissance', label: 'Lieu de naissance', icon: MapPin },
-    { key: 'nationalite', label: 'Nationalité', icon: MapPin },
-    { key: 'adresse', label: 'Adresse', icon: MapPin },
-    { key: 'telephone', label: 'Téléphone', icon: Phone },
-    { key: 'email', label: 'Email', icon: Mail, type: 'email' },
-  ] as const;
+    { key: 'nom', label: 'Nom' },
+    { key: 'prenom', label: 'Prénom' },
+    { key: 'dateNaissance', label: 'Date de naissance', type: 'date' },
+    { key: 'lieuNaissance', label: 'Lieu de naissance' },
+    { key: 'nationalite', label: 'Nationalité' },
+    { key: 'adresse', label: 'Adresse' },
+    { key: 'telephone', label: 'Téléphone' },
+    { key: 'email', label: 'Email', type: 'email' },
+  ];
 
   return (
     <div className="space-y-6">
-      {/* En-tête */}
+      {/* Header */}
       <div className="flex items-center justify-between">
         <div>
-          <h2 className="text-xl font-bold uppercase">Données déclarées</h2>
-          <p className="text-muted-foreground">
-            Informations saisies par le citoyen lors de sa demande
+          <h2 className="text-xl font-semibold">Données déclarées</h2>
+          <p className="text-muted-foreground text-sm mt-1">
+            Informations saisies par le citoyen
           </p>
         </div>
-        <div className="flex gap-2">
-          {isEditing ? (
-            <>
-              <Button
-                variant="outline"
-                className="border-2"
-                onClick={handleCancel}
-              >
-                <X className="h-4 w-4 mr-2" />
-                Annuler
-              </Button>
-              <Button
-                className="border-2 shadow-xs hover:shadow-none"
-                onClick={handleSave}
-              >
-                <Save className="h-4 w-4 mr-2" />
-                Enregistrer
-              </Button>
-            </>
-          ) : (
-            <Button
-              variant="outline"
-              className="border-2"
-              onClick={() => setIsEditing(true)}
-            >
-              <Edit2 className="h-4 w-4 mr-2" />
-              Modifier
+        {!isEditing ? (
+          <Button variant="outline" size="sm" onClick={() => setIsEditing(true)}>
+            <Edit2 className="h-4 w-4 mr-2" />
+            Modifier
+          </Button>
+        ) : (
+          <div className="flex gap-2">
+            <Button variant="outline" size="sm" onClick={handleCancel}>
+              <X className="h-4 w-4 mr-2" />
+              Annuler
             </Button>
-          )}
+            <Button size="sm" onClick={handleSave}>
+              <Save className="h-4 w-4 mr-2" />
+              Enregistrer
+            </Button>
+          </div>
+        )}
+      </div>
+
+      {/* Form */}
+      <div className="bg-card rounded-xl border border-border p-6">
+        <div className="grid grid-cols-2 gap-5">
+          {fields.map((field) => {
+            const inputType = 'type' in field ? field.type : 'text';
+            return (
+              <div key={field.key} className="space-y-1.5">
+                <Label className="text-sm text-muted-foreground">
+                  {field.label}
+                </Label>
+                {isEditing ? (
+                  <Input
+                    type={inputType}
+                    value={formData[field.key as keyof typeof formData]}
+                    onChange={(e) => setFormData(prev => ({ 
+                      ...prev, 
+                      [field.key]: e.target.value 
+                    }))}
+                  />
+                ) : (
+                  <p className="text-sm font-medium py-2">
+                    {demande.citoyen[field.key as keyof typeof demande.citoyen]}
+                  </p>
+                )}
+              </div>
+            );
+          })}
         </div>
       </div>
 
-      {/* Formulaire */}
-      <Card className="border-2">
-        <CardHeader className="border-b-2 border-border pb-4">
-          <div className="flex items-center justify-between">
-            <CardTitle className="flex items-center gap-2">
-              <User className="h-5 w-5" />
-              Identité du demandeur
-            </CardTitle>
-            <Badge variant="outline" className="border-2">
-              Sexe: {demande.citoyen.sexe === 'M' ? 'Masculin' : 'Féminin'}
-            </Badge>
+      {/* History */}
+      {demande.historique.length > 0 && (
+        <div className="bg-card rounded-xl border border-border p-6">
+          <div className="flex items-center gap-2 mb-4">
+            <Clock className="h-4 w-4 text-muted-foreground" />
+            <h3 className="font-medium">Historique</h3>
           </div>
-        </CardHeader>
-        <CardContent className="pt-6">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {fields.map((field) => {
-              const Icon = field.icon;
-              const inputType = 'type' in field ? (field as { type: string }).type : 'text';
-              return (
-                <div key={field.key} className="space-y-2">
-                  <Label className="text-xs font-bold uppercase text-muted-foreground flex items-center gap-2">
-                    <Icon className="h-3 w-3" />
-                    {field.label}
-                  </Label>
-                  {isEditing ? (
-                    <Input
-                      type={inputType}
-                      value={formData[field.key as keyof typeof formData]}
-                      onChange={(e) => setFormData(prev => ({ 
-                        ...prev, 
-                        [field.key]: e.target.value 
-                      }))}
-                      className="border-2"
-                    />
-                  ) : (
-                    <p className="font-medium p-3 bg-secondary border-2 border-transparent">
-                      {demande.citoyen[field.key as keyof typeof demande.citoyen]}
-                    </p>
-                  )}
+          <div className="space-y-3">
+            {demande.historique.slice(-3).reverse().map((entry) => (
+              <div key={entry.id} className="flex items-start gap-3 text-sm">
+                <div className="w-1.5 h-1.5 rounded-full bg-muted-foreground mt-1.5 shrink-0" />
+                <div className="flex-1">
+                  <span className="font-medium">{entry.action}</span>
+                  <span className="text-muted-foreground"> — {entry.details}</span>
                 </div>
-              );
-            })}
+                <span className="text-xs text-muted-foreground shrink-0">
+                  {new Date(entry.date).toLocaleDateString('fr-FR')}
+                </span>
+              </div>
+            ))}
           </div>
-        </CardContent>
-      </Card>
-
-      {/* Historique des modifications */}
-      <Card className="border-2">
-        <CardHeader className="border-b-2 border-border pb-4">
-          <CardTitle className="flex items-center gap-2 text-base">
-            <History className="h-5 w-5" />
-            Historique des modifications
-          </CardTitle>
-        </CardHeader>
-        <CardContent className="pt-4">
-          {demande.historique.length === 0 ? (
-            <p className="text-muted-foreground text-sm">
-              Aucune modification enregistrée
-            </p>
-          ) : (
-            <div className="space-y-3">
-              {demande.historique.slice(-5).reverse().map((entry) => (
-                <div 
-                  key={entry.id} 
-                  className="flex items-start gap-3 p-3 bg-secondary border-2 border-transparent"
-                >
-                  <div className="w-2 h-2 mt-2 bg-primary" />
-                  <div className="flex-1">
-                    <div className="flex items-center justify-between">
-                      <span className="font-bold text-sm">{entry.action}</span>
-                      <span className="text-xs text-muted-foreground font-mono">
-                        {new Date(entry.date).toLocaleString('fr-FR')}
-                      </span>
-                    </div>
-                    <p className="text-sm text-muted-foreground">{entry.details}</p>
-                    <p className="text-xs text-muted-foreground mt-1">
-                      Par: {entry.agentNom}
-                    </p>
-                  </div>
-                </div>
-              ))}
-            </div>
-          )}
-        </CardContent>
-      </Card>
+        </div>
+      )}
 
       {/* Action */}
-      <div className="flex justify-end">
-        <Button
-          className="border-2 shadow-xs hover:shadow-none"
-          onClick={onComplete}
-        >
-          Continuer vers la vérification documentaire
+      <div className="flex justify-end pt-2">
+        <Button onClick={onComplete}>
+          Continuer
         </Button>
       </div>
     </div>
