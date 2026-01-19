@@ -110,29 +110,33 @@ const Step1Donnees = ({ demande, onComplete }: Step1DonneesProps) => {
         </CardHeader>
         <CardContent className="pt-6">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {fields.map(({ key, label, icon: Icon, type }) => (
-              <div key={key} className="space-y-2">
-                <Label className="text-xs font-bold uppercase text-muted-foreground flex items-center gap-2">
-                  <Icon className="h-3 w-3" />
-                  {label}
-                </Label>
-                {isEditing ? (
-                  <Input
-                    type={'type' in { key, label, icon, ...('type' in arguments ? { type } : {}) } ? (arguments as any).type || 'text' : 'text'}
-                    value={formData[key as keyof typeof formData]}
-                    onChange={(e) => setFormData(prev => ({ 
-                      ...prev, 
-                      [key]: e.target.value 
-                    }))}
-                    className="border-2"
-                  />
-                ) : (
-                  <p className="font-medium p-3 bg-secondary border-2 border-transparent">
-                    {demande.citoyen[key as keyof typeof demande.citoyen]}
-                  </p>
-                )}
-              </div>
-            ))}
+            {fields.map((field) => {
+              const Icon = field.icon;
+              const inputType = 'type' in field ? (field as { type: string }).type : 'text';
+              return (
+                <div key={field.key} className="space-y-2">
+                  <Label className="text-xs font-bold uppercase text-muted-foreground flex items-center gap-2">
+                    <Icon className="h-3 w-3" />
+                    {field.label}
+                  </Label>
+                  {isEditing ? (
+                    <Input
+                      type={inputType}
+                      value={formData[field.key as keyof typeof formData]}
+                      onChange={(e) => setFormData(prev => ({ 
+                        ...prev, 
+                        [field.key]: e.target.value 
+                      }))}
+                      className="border-2"
+                    />
+                  ) : (
+                    <p className="font-medium p-3 bg-secondary border-2 border-transparent">
+                      {demande.citoyen[field.key as keyof typeof demande.citoyen]}
+                    </p>
+                  )}
+                </div>
+              );
+            })}
           </div>
         </CardContent>
       </Card>
