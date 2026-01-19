@@ -20,6 +20,7 @@ import ProtectedRoute from "@/components/auth/ProtectedRoute";
 // Pages
 import LoginPage from "@/pages/LoginPage";
 import DashboardPage from "@/pages/DashboardPage";
+import DossiersPage from "@/pages/DossiersPage";
 import DossierPage from "@/pages/DossierPage";
 import PeripheriquesPage from "@/pages/PeripheriquesPage";
 import LogsPage from "@/pages/LogsPage";
@@ -47,7 +48,7 @@ const App = () => (
                   </ProtectedRoute>
                 }>
                   <Route path="/dashboard" element={<DashboardPage />} />
-                  <Route path="/dossiers" element={<Navigate to="/dashboard" replace />} />
+                  <Route path="/dossiers" element={<DossiersPage />} />
                   <Route path="/dossier/:id" element={<DossierPage />} />
                   <Route path="/peripheriques" element={<PeripheriquesPage />} />
                   <Route path="/logs" element={<LogsPage />} />
