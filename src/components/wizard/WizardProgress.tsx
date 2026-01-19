@@ -1,5 +1,5 @@
 /**
- * Indicateur de progression du wizard
+ * Wizard Progress - Minimal pills style (kept for reference, not used in new design)
  */
 
 import { Check } from 'lucide-react';
@@ -18,46 +18,25 @@ interface WizardProgressProps {
 
 const WizardProgress = ({ steps, onStepClick }: WizardProgressProps) => {
   return (
-    <div className="flex items-center justify-between">
-      {steps.map((step, index) => (
-        <div key={step.id} className="flex items-center flex-1 last:flex-none">
-          {/* Step Circle */}
-          <button
-            onClick={() => step.completed && onStepClick?.(step.id)}
-            disabled={!step.completed}
-            className={`
-              flex items-center justify-center w-10 h-10 border-2 font-bold transition-all
-              ${step.current 
-                ? 'bg-primary text-primary-foreground border-primary shadow-xs' 
-                : step.completed 
-                  ? 'bg-chart-2 text-primary-foreground border-chart-2 cursor-pointer hover:shadow-xs' 
-                  : 'bg-card text-muted-foreground border-border'
-              }
-            `}
-          >
-            {step.completed ? (
-              <Check className="h-5 w-5" />
-            ) : (
-              step.id
-            )}
-          </button>
-
-          {/* Step Label */}
-          <span className={`
-            ml-2 text-xs font-bold uppercase hidden sm:block
-            ${step.current ? 'text-foreground' : 'text-muted-foreground'}
-          `}>
-            {step.label}
-          </span>
-
-          {/* Connector Line */}
-          {index < steps.length - 1 && (
-            <div className={`
-              flex-1 h-0.5 mx-3
-              ${step.completed ? 'bg-chart-2' : 'bg-border'}
-            `} />
-          )}
-        </div>
+    <div className="flex items-center gap-1">
+      {steps.map((step) => (
+        <button
+          key={step.id}
+          onClick={() => step.completed && onStepClick?.(step.id)}
+          disabled={!step.completed && !step.current}
+          className={`
+            flex items-center gap-1.5 px-3 py-1.5 rounded-full text-sm transition-colors
+            ${step.current 
+              ? 'bg-primary text-primary-foreground font-medium' 
+              : step.completed 
+                ? 'bg-chart-2/10 text-chart-2 hover:bg-chart-2/20 cursor-pointer' 
+                : 'text-muted-foreground'
+            }
+          `}
+        >
+          {step.completed && <Check className="h-3 w-3" />}
+          <span>{step.label}</span>
+        </button>
       ))}
     </div>
   );
