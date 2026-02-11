@@ -73,7 +73,7 @@ const LoginPage = () => {
               <Input
                 id="email"
                 type="email"
-                placeholder="agent@snib.gov.cg"
+                placeholder="agent@snib.gov.cd"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 className="h-11"
@@ -109,7 +109,7 @@ const LoginPage = () => {
           <div className="p-4 rounded-lg bg-muted/50 text-center">
             <p className="text-xs text-muted-foreground mb-1">Compte démo</p>
             <p className="text-sm font-mono">
-              grace.mbemba@snib.gov.cg / demo1234
+              jbisingwa@snib.gov.cd / demo1234
             </p>
           </div>
         </div>
