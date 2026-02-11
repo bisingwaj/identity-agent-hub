@@ -15,9 +15,9 @@ import {
 export const mockAgents: Agent[] = [
   {
     id: 'AGT-001',
-    nom: 'MBEMBA',
-    prenom: 'Grâce',
-    email: 'grace.mbemba@snib.gov.cg',
+    nom: 'BISINGWA',
+    prenom: 'Jérémie',
+    email: 'jbisingwa@snib.gov.cd',
     role: 'AGENT_ADMIN_IDENTIFICATION',
     centreId: 'CTR-BZV-001',
     centreNom: 'Mairie centrale de Brazzaville'
@@ -26,7 +26,7 @@ export const mockAgents: Agent[] = [
     id: 'AGT-002',
     nom: 'MOUANDA',
     prenom: 'Patrick',
-    email: 'patrick.mouanda@snib.gov.cg',
+    email: 'patrick.mouanda@snib.gov.cd',
     role: 'SUPERVISEUR',
     centreId: 'CTR-BZV-001',
     centreNom: 'Mairie centrale de Brazzaville'
@@ -141,7 +141,7 @@ export const mockDemandes: Demande[] = [
         date: '2026-01-18T09:00:00',
         action: 'Début instruction',
         agentId: 'AGT-001',
-        agentNom: 'MBEMBA Grâce',
+        agentNom: 'BISINGWA Jérémie',
         details: 'Prise en charge du dossier par l\'agent'
       }
     ]
