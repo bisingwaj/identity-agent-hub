@@ -1,5 +1,5 @@
 /**
- * Application principale - Système National d'Identité - Agent Admin
+ * Application principale - Système National d'Identification Biométrique - Agent Admin
  */
 
 import { Toaster } from "@/components/ui/toaster";

@@ -39,9 +39,9 @@ const AppLayout = () => {
         <div className="h-14 flex items-center px-5 border-b border-border">
           <div className="flex items-center gap-2.5">
             <div className="w-7 h-7 rounded-lg bg-primary flex items-center justify-center">
-              <span className="text-primary-foreground font-semibold text-xs">SNI</span>
+              <span className="text-primary-foreground font-semibold text-[9px]">SNIB</span>
             </div>
-            <span className="font-medium text-sm">Agent Portal</span>
+            <span className="font-medium text-sm">SNIB Agent</span>
           </div>
         </div>
 

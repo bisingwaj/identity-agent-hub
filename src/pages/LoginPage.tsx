@@ -43,9 +43,9 @@ const LoginPage = () => {
       <header className="h-14 flex items-center justify-center border-b border-border">
         <div className="flex items-center gap-2.5">
           <div className="w-8 h-8 rounded-lg bg-primary flex items-center justify-center">
-            <span className="text-primary-foreground font-semibold text-sm">SNI</span>
+            <span className="text-primary-foreground font-semibold text-xs">SNIB</span>
           </div>
-          <span className="font-medium">Système National d'Identité</span>
+          <span className="font-medium">Système National d'Identification Biométrique</span>
         </div>
       </header>
 
@@ -73,7 +73,7 @@ const LoginPage = () => {
               <Input
                 id="email"
                 type="email"
-                placeholder="agent@sni.gov"
+                placeholder="agent@snib.gov.cg"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 className="h-11"
@@ -109,7 +109,7 @@ const LoginPage = () => {
           <div className="p-4 rounded-lg bg-muted/50 text-center">
             <p className="text-xs text-muted-foreground mb-1">Compte démo</p>
             <p className="text-sm font-mono">
-              aya.konan@sni.gov / demo1234
+              grace.mbemba@snib.gov.cg / demo1234
             </p>
           </div>
         </div>

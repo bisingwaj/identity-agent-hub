@@ -15,21 +15,21 @@ import {
 export const mockAgents: Agent[] = [
   {
     id: 'AGT-001',
-    nom: 'KONAN',
-    prenom: 'Aya',
-    email: 'aya.konan@sni.gov',
+    nom: 'MBEMBA',
+    prenom: 'Grâce',
+    email: 'grace.mbemba@snib.gov.cg',
     role: 'AGENT_ADMIN_IDENTIFICATION',
-    centreId: 'CTR-ABJ-001',
-    centreNom: 'Mairie d\'Abobo'
+    centreId: 'CTR-BZV-001',
+    centreNom: 'Mairie centrale de Brazzaville'
   },
   {
     id: 'AGT-002',
-    nom: 'TRAORE',
-    prenom: 'Mamadou',
-    email: 'mamadou.traore@sni.gov',
+    nom: 'MOUANDA',
+    prenom: 'Patrick',
+    email: 'patrick.mouanda@snib.gov.cg',
     role: 'SUPERVISEUR',
-    centreId: 'CTR-ABJ-001',
-    centreNom: 'Mairie d\'Abobo'
+    centreId: 'CTR-BZV-001',
+    centreNom: 'Mairie centrale de Brazzaville'
   }
 ];
 
@@ -49,17 +49,17 @@ export const checklistStandard: Omit<ChecklistItem, 'valide' | 'commentaire' | '
 export const mockDemandes: Demande[] = [
   {
     id: 'DEM-2026-00001',
-    numeroDossier: 'SNI-2026-00001',
+    numeroDossier: 'SNIB-2026-00001',
     citoyen: {
-      nom: 'KOUAME',
-      prenom: 'Jean-Baptiste',
+      nom: 'NGOUMA',
+      prenom: 'Jean-Claude',
       dateNaissance: '1985-03-15',
-      lieuNaissance: 'Abidjan',
+      lieuNaissance: 'Brazzaville',
       sexe: 'M',
-      nationalite: 'Ivoirienne',
-      adresse: '123 Rue des Jardins, Cocody, Abidjan',
-      telephone: '+225 07 01 02 03 04',
-      email: 'jb.kouame@email.ci'
+      nationalite: 'Congolaise',
+      adresse: '45 Avenue de la Paix, Bacongo, Brazzaville',
+      telephone: '+242 06 512 34 56',
+      email: 'jc.ngouma@email.cg'
     },
     statut: 'RDV_CONFIRME',
     dateCreation: '2026-01-15T10:30:00',
@@ -94,17 +94,17 @@ export const mockDemandes: Demande[] = [
   },
   {
     id: 'DEM-2026-00002',
-    numeroDossier: 'SNI-2026-00002',
+    numeroDossier: 'SNIB-2026-00002',
     citoyen: {
-      nom: 'DIALLO',
-      prenom: 'Fatou',
+      nom: 'OKO',
+      prenom: 'Béatrice',
       dateNaissance: '1992-07-22',
-      lieuNaissance: 'Bouaké',
+      lieuNaissance: 'Pointe-Noire',
       sexe: 'F',
-      nationalite: 'Ivoirienne',
-      adresse: '45 Avenue de la Paix, Plateau, Abidjan',
-      telephone: '+225 05 11 22 33 44',
-      email: 'fatou.diallo@email.ci'
+      nationalite: 'Congolaise',
+      adresse: '12 Rue Loango, Centre-ville, Pointe-Noire',
+      telephone: '+242 05 678 90 12',
+      email: 'beatrice.oko@email.cg'
     },
     statut: 'EN_COURS_INSTRUCTION',
     dateCreation: '2026-01-14T08:15:00',
@@ -141,24 +141,24 @@ export const mockDemandes: Demande[] = [
         date: '2026-01-18T09:00:00',
         action: 'Début instruction',
         agentId: 'AGT-001',
-        agentNom: 'KONAN Aya',
+        agentNom: 'MBEMBA Grâce',
         details: 'Prise en charge du dossier par l\'agent'
       }
     ]
   },
   {
     id: 'DEM-2026-00003',
-    numeroDossier: 'SNI-2026-00003',
+    numeroDossier: 'SNIB-2026-00003',
     citoyen: {
-      nom: 'N\'GUESSAN',
-      prenom: 'Kouadio',
+      nom: 'MASSAMBA',
+      prenom: 'Didier',
       dateNaissance: '1978-11-30',
-      lieuNaissance: 'Yamoussoukro',
+      lieuNaissance: 'Dolisie',
       sexe: 'M',
-      nationalite: 'Ivoirienne',
-      adresse: '78 Boulevard du Commerce, Treichville, Abidjan',
-      telephone: '+225 01 55 66 77 88',
-      email: 'k.nguessan@email.ci'
+      nationalite: 'Congolaise',
+      adresse: '8 Boulevard Denis Sassou-Nguesso, Ouenzé, Brazzaville',
+      telephone: '+242 06 345 67 89',
+      email: 'd.massamba@email.cg'
     },
     statut: 'VERIFICATION_DOCUMENTS',
     dateCreation: '2026-01-13T16:45:00',
@@ -177,7 +177,7 @@ export const mockDemandes: Demande[] = [
       {
         id: 'DOC-003',
         type: 'JUSTIFICATIF_DOMICILE',
-        nom: 'Facture CIE',
+        nom: 'Facture SNE',
         dateNumerisation: '2026-01-17T10:35:00',
         qualite: 'BONNE',
         statut: 'VALIDE'
@@ -193,17 +193,17 @@ export const mockDemandes: Demande[] = [
   },
   {
     id: 'DEM-2026-00004',
-    numeroDossier: 'SNI-2026-00004',
+    numeroDossier: 'SNIB-2026-00004',
     citoyen: {
-      nom: 'YAO',
-      prenom: 'Marie-Claire',
+      nom: 'ITOUA',
+      prenom: 'Christelle',
       dateNaissance: '1995-02-14',
-      lieuNaissance: 'San Pedro',
+      lieuNaissance: 'Owando',
       sexe: 'F',
-      nationalite: 'Ivoirienne',
-      adresse: '12 Rue du Port, San Pedro',
-      telephone: '+225 07 99 88 77 66',
-      email: 'mc.yao@email.ci'
+      nationalite: 'Congolaise',
+      adresse: '23 Avenue Marien Ngouabi, Nkayi',
+      telephone: '+242 05 901 23 45',
+      email: 'c.itoua@email.cg'
     },
     statut: 'EN_ATTENTE_RDV',
     dateCreation: '2026-01-18T11:20:00',
@@ -221,17 +221,17 @@ export const mockDemandes: Demande[] = [
   },
   {
     id: 'DEM-2026-00005',
-    numeroDossier: 'SNI-2026-00005',
+    numeroDossier: 'SNIB-2026-00005',
     citoyen: {
-      nom: 'BAMBA',
-      prenom: 'Ibrahim',
+      nom: 'ONDONGO',
+      prenom: 'Serge',
       dateNaissance: '1988-09-05',
-      lieuNaissance: 'Korhogo',
+      lieuNaissance: 'Impfondo',
       sexe: 'M',
-      nationalite: 'Ivoirienne',
-      adresse: '56 Avenue du Nord, Korhogo',
-      telephone: '+225 05 44 33 22 11',
-      email: 'i.bamba@email.ci'
+      nationalite: 'Congolaise',
+      adresse: '67 Rue Matsiona, Moungali, Brazzaville',
+      telephone: '+242 06 789 01 23',
+      email: 's.ondongo@email.cg'
     },
     statut: 'VALIDE',
     dateCreation: '2026-01-10T09:00:00',
@@ -331,8 +331,8 @@ export const mockRendezVous: RendezVous[] = [
   {
     id: 'RDV-001',
     demandeId: 'DEM-2026-00001',
-    citoyenNom: 'KOUAME',
-    citoyenPrenom: 'Jean-Baptiste',
+    citoyenNom: 'NGOUMA',
+    citoyenPrenom: 'Jean-Claude',
     date: '2026-01-19',
     heure: '09:00',
     duree: 45,
@@ -341,8 +341,8 @@ export const mockRendezVous: RendezVous[] = [
   {
     id: 'RDV-002',
     demandeId: 'DEM-2026-00002',
-    citoyenNom: 'DIALLO',
-    citoyenPrenom: 'Fatou',
+    citoyenNom: 'OKO',
+    citoyenPrenom: 'Béatrice',
     date: '2026-01-19',
     heure: '10:30',
     duree: 45,
@@ -351,8 +351,8 @@ export const mockRendezVous: RendezVous[] = [
   {
     id: 'RDV-003',
     demandeId: 'DEM-2026-00003',
-    citoyenNom: 'N\'GUESSAN',
-    citoyenPrenom: 'Kouadio',
+    citoyenNom: 'MASSAMBA',
+    citoyenPrenom: 'Didier',
     date: '2026-01-19',
     heure: '14:00',
     duree: 45,

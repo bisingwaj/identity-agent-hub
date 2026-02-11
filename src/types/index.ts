@@ -1,5 +1,5 @@
 /**
- * Types centralisés pour le Système National d'Identité - Agent Admin
+ * Types centralisés pour le Système National d'Identification Biométrique - Agent Admin
  */
 
 // ============ AUTHENTIFICATION ============
